@@ -61,7 +61,7 @@ cd catkin_ws/src
 ```
 3. 将项目克隆到 `src` 目录下：
 ```bash
-git clone <项目仓库地址> lcm_test
+git clone https://github.com/WHDworld/lcm_test.git lcm_test
 ```
 4. 进入工作空间的根目录并编译项目：
 ```bash
@@ -73,6 +73,10 @@ catkin_make
 1. 激活工作空间：
 ```bash
 source devel/setup.bash
+```
+1. 设置wifi：
+```bash
+sudo route add -net 224.0.0.0 netmask 240.0.0.0 dev wlan0
 ```
 2. 运行项目：
 ```bash
