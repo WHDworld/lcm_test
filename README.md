@@ -8,7 +8,14 @@
 - **ROS**：用于日志管理和时间处理。
 - **Eigen**：用于向量和四元数的处理。
 - **CMake**：用于项目的构建。
-
+## LCM库安装
+```bash
+sudo apt install openjdk-8-jdk
+git clone -b v1.5.0 https://github.com/lcm-proj/lcm.git
+cd lcm
+mkdir build && cd build && \
+      cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -DBUILD_EXAMPLES=OFF -DBUILD_BENCHMARKS=OFF .. && \
+      sudo make -j8 install
 ## 代码结构
 ```
 lcm_test/
@@ -79,7 +86,10 @@ rosrun lcm_test lcm_test
 - **`LcmNet` 类**：实现了 LCM 网络通信的功能，包括数据的广播和接收。
   - `broadcastTrajectory` 方法：将 `Trajectory_t` 类型的轨迹数据转换为 `TrajectoryDescriptor_t` 类型，并通过 LCM 广播出去。
   - `onTrajectoryReceived` 方法：处理接收到的轨迹数据，当数据的自身 ID 与本地 ID 不同时，调用回调函数进行处理。
-
+### 自定义数据结构
+- **`SwarmPose_t.lcm` **：在SwarmPose_t.lcm中添加你自定义的数据结构。
+  - `broadcastTrajectory` 方法：将 `Trajectory_t` 类型的轨迹数据转换为 `TrajectoryDescriptor_t` 类型，并通过 LCM 广播出去。
+  - `onTrajectoryReceived` 方法：处理接收到的轨迹数据，当数据的自身 ID 与本地 ID 不同时，调用回调函数进行处理。
 ## 注意事项
 - 请确保 LCM 的 URI 配置正确，以保证数据的正常通信。
 - 在编译和运行项目时，需要激活 ROS 工作空间。
